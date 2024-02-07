@@ -1,12 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Punk API</title>
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-    <script src="index.js" type="module"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Punk API</title>
+        <link rel="stylesheet" href="index.css" />
+        <script defer src="index.js" type="module"></script>
+    </head>
+    <body>
+        <nav class="navbar">
+            <h1>PUNK</h1>
+            <span class="click nav-landing">Random</span>
+            <span class="click nav-search">Search</span>
+        </nav>
+        <main class="page random">
+            <h2>Random beer</h2>
+            <section class="card">
+                <img src="beer.png" alt="A beer bottle." />
+                <h3>Name</h3>
+                <span class="click">See more ></span>
+            </section>
+        </main>
+        <main class="page search hidden">
+            <h2>Search</h2>
+            <div class="split">
+              <form class="form" id="search-form">
+                <h3>Parameters</h3>
+                <label> Name: <input class="name" type="text" /> </label>
+                <label> Hops: <input class="hops" type="text" /> </label>
+                <label> Malt: <input class="malt" type="text" /> </label>
+                <label> Lesser than ABV: <input class="l-abv" type="number" step="0.1" value="6.4" /> </label>
+                <label> Greater than ABV: <input class="g-abv" type="number" step="0.1" value="0.3" /> </label>
+                <label> Brewed before: <input class="b-brewed" type="date" /> </label>
+                <label> Brewed after: <input class="a-brewed" type="date" /> </label>
+                <button class="submit click" type="submit">Search</button>
+            </form>
+            <div class="results">
+              <h3>Results</h3>
+              <span class="click">TEST</span>
+              <span class="click">TEST</span>
+              <span class="click">TEST</span>
+              <span class="click">TEST</span>
+              <span class="click">TEST</span>
+            </div>
+            </div>
+        </main>
+    </body>
 </html>

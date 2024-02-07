@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main {
+    max-width: 960px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.click {
+    cursor: pointer;
+    user-select: none;
+}
+.click:hover {
+    filter: invert(0.3);
+}
+.click:active {
+    color: orange;
+}
+
+.navbar {
+    background-color: black;
+    display: grid;
+    place-content: center start;
+    grid-auto-flow: column;
+    gap: 1rem;
+    padding: 1rem;
+    span {
+        color: white;
+    }
+    h1 {
+        font-size: 1rem;
+        color: white;
+        margin: 0;
+        color: yellow;
+        cursor: default;
+    }
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 23rem;
+    width: 15rem;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    img {
+        height: 70%;
+        width: 100%;
+        object-fit: contain;
+        padding: 0.5rem;
+        box-sizing: border-box;
+        background-color: lightgoldenrodyellow;
+    }
+    h3 {
+        margin: 1rem auto auto 1rem;
+    }
+    span {
+        margin: auto auto 1rem 1rem;
+    }
+}
+
+.split {
+    display: grid;
+    gap: 1rem;
+    grid-template: 1fr / 1fr 2fr;
+    @media screen and (max-width: 480px) {
+        grid-template: 1fr 1fr / 1fr;
+      }
+}
+
+.form {
+    display: grid;
+    gap: 0.5rem;
+    label {
+        display: grid;
+        gap: 1px;
+    }
+    button {
+        width: min-content;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+}
+
+.results {
+    height: min-content;
+    display: grid;
+    gap: 0.3rem;
+    grid-template: min-content / min-content;
+}
+
+.hidden {
+    display: none;
+}
