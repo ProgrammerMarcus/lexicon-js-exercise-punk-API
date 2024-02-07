@@ -13,7 +13,7 @@
             <span class="click nav-landing">Random</span>
             <span class="click nav-search">Search</span>
         </nav>
-        <main class="page random">
+        <main class="page random hidden">
             <h2>Random beer</h2>
             <section class="card">
                 <img src="beer.png" alt="A beer bottle." />
@@ -21,18 +21,18 @@
                 <span class="click" data-id="0" >See more ></span>
             </section>
         </main>
-        <main class="page search hidden">
+        <main class="page search">
             <h2>Search</h2>
             <div class="split">
               <form class="form" id="search-form">
                 <h3>Parameters</h3>
-                <label> Name: <input class="name" type="text" /> </label>
+                <label> Name: <input class="name" type="text" value=""/> </label>
                 <label> Hops: <input class="hops" type="text" /> </label>
                 <label> Malt: <input class="malt" type="text" /> </label>
-                <label> Lesser than ABV: <input class="l-abv" type="number" step="0.1" value="6.4" /> </label>
-                <label> Greater than ABV: <input class="g-abv" type="number" step="0.1" value="0.3" /> </label>
-                <label> Brewed before: <input class="b-brewed" type="date" /> </label>
-                <label> Brewed after: <input class="a-brewed" type="date" /> </label>
+                <label> Lesser than ABV: <input class="l-abv" type="number" step="0.1" value=70 /> </label>
+                <label> Greater than ABV: <input class="g-abv" type="number" step="0.1" value=0 /> </label>
+                <label> Brewed before: <input class="b-brewed" type="date" value="2024-01-01" /> </label>
+                <label> Brewed after: <input class="a-brewed" type="date" value="1999-01-01" /> </label>
                 <button class="submit click" type="submit">Search</button>
             </form>
             <div class="results">
@@ -45,7 +45,7 @@
             </div>
             </div>
         </main>
-        <main class="info hidden">
+        <main class="info">
           <h2>Info</h2>
           <section class="card large">
               <img src="beer.png" alt="A beer bottle." />
