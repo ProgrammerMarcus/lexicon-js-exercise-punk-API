@@ -6,7 +6,7 @@ function mergeCache(source) {
     }
 }
 
-async function getRandom() {
+async function getRandom(display) {
     try {
         const response = await fetch("https://api.punkapi.com/v2/beers/random");
         const data = await response.json();
@@ -47,8 +47,8 @@ async function displayInfo(id) {
             .map((v) => `${v.name}: ${v.amount.value} ${v.amount.unit}, ${v.add}, ${v.attribute}`)
             .join("\n") +
         `\n\n Ingredients (yeast):\n${cache[id].ingredients.yeast}`;
-    document.querySelector(".info .pairs").innerText = `Food parings: ${cache[id].food_pairing.join(", ")}`;
     document.querySelector(".info .tips").innerText = cache[id].brewers_tips;
+    document.querySelector(".info .pairs").innerText = `Food parings: ${cache[id].food_pairing.join(", ")}`;
 }
 
 document.querySelector(".navbar").addEventListener("click", (e) => {
@@ -98,7 +98,6 @@ function search() {
     if (form.bBrewed) {
         search = search.concat(`&brewed_before=${form.bBrewed}`);
     }
-    console.log(form);
     fetch(search.concat(`&page=${document.querySelector(".results .page").value}&per_page=10`))
         .then((r) => r.json())
         .then((j) => {

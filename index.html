@@ -9,21 +9,21 @@
     </head>
     <body>
         <nav class="navbar">
-            <h1>PUNK</h1>
-            <span class="click nav-landing">Random</span>
-            <span class="click nav-search">Search</span>
+            <h1><img src="logo.png" alt="PUNK" /></h1>
+            <span class="click nav-landing">GIVE ME A (RANDOM) BEAR!</span>
+            <span class="click nav-search">SEARCH FOR BEARS!</span>
         </nav>
-        <main class="page random hidden">
-            <h2>Random beer</h2>
+        <main class="page random">
+            <h2>Random BEAR!</h2>
             <section class="card">
                 <img src="beer.png" alt="A beer bottle." />
                 <h3>Name</h3>
                 <span class="click" data-id="0">See more ></span>
             </section>
         </main>
-        <main class="page search">
-            <h2>Search</h2>
-            <div class="split">
+        <main class="page search hidden">
+            <h2>Search for BEARS!</h2>
+            <div class="split card">
                 <form class="form" id="search-form">
                     <h3>Parameters</h3>
                     <label> Name: <input class="name" type="text" value="" /> </label>
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </main>
-        <main class="info">
+        <main class="info hidden">
             <h2>Info</h2>
             <section class="card large">
                 <img src="beer.png" alt="A beer bottle." />
