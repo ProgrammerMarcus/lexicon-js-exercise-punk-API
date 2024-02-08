@@ -101,7 +101,7 @@ function search() {
     fetch(search.concat(`&page=${document.querySelector(".results .page").value}&per_page=10`))
         .then((r) => r.json())
         .then((j) => {
-            mergeCache(j)
+            mergeCache(j);
             document.querySelector(".split .results .found").replaceChildren();
             for (let d of j) {
                 document.querySelector(".split .results .found").insertAdjacentHTML("afterbegin", `<span data-id=${d.id} class="click">${d.name}</span>`);
@@ -110,11 +110,12 @@ function search() {
 }
 document.querySelector("#search-form").addEventListener("submit", (e) => {
     e.preventDefault();
+    document.querySelector(".results .page").value = 1
     search();
 });
 
 document.querySelector(".results .found").addEventListener("click", (e) => {
-    displayInfo(e.target.dataset.id)
+    displayInfo(e.target.dataset.id);
 });
 
 document.querySelector(".results input").addEventListener("change", (e) => {

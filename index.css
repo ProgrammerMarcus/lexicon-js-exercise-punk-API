@@ -95,8 +95,9 @@ main {
 
 .split.card {
     width: 100%;
+    box-sizing: border-box;
     height: auto;
-    padding: 1rem;
+    padding: 2rem 1rem;
 }
 
 .form {
