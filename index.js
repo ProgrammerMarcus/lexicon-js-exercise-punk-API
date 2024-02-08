@@ -11,7 +11,6 @@ async function getRandom() {
         const response = await fetch("https://api.punkapi.com/v2/beers/random");
         const data = await response.json();
         mergeCache(data);
-        displayInfo(data[0].id);
         if (data[0].image_url) {
             document.querySelector(".random img").src = data[0].image_url;
         } else {
@@ -26,6 +25,9 @@ async function getRandom() {
 }
 
 async function displayInfo(id) {
+    document.querySelector(".page.search").classList.add("hidden");
+    document.querySelector(".page.random").classList.add("hidden");
+    document.querySelector(".info").classList.remove("hidden");
     if (cache[id].image_url) {
         document.querySelector(".info img").src = cache[id].image_url;
     } else {
@@ -62,16 +64,15 @@ document.querySelector(".navbar").addEventListener("click", (e) => {
     }
 });
 
-document.querySelector("#search-form").addEventListener("submit", (e) => {
-    e.preventDefault();
+function search() {
     let form = {
-        name: e.currentTarget.querySelector(".name").value.replace(" ", "_"),
-        hops: e.currentTarget.querySelector(".hops").value.replace(" ", "_"),
-        malt: e.currentTarget.querySelector(".malt").value.replace(" ", "_"),
-        lAbv: e.currentTarget.querySelector(".l-abv").value,
-        gAbv: e.currentTarget.querySelector(".g-abv").value,
-        bBrewed: e.currentTarget.querySelector(".b-brewed").value,
-        aBrewed: e.currentTarget.querySelector(".a-brewed").value,
+        name: document.querySelector(".name").value.replace(" ", "_"),
+        hops: document.querySelector(".hops").value.replace(" ", "_"),
+        malt: document.querySelector(".malt").value.replace(" ", "_"),
+        lAbv: document.querySelector(".l-abv").value,
+        gAbv: document.querySelector(".g-abv").value,
+        bBrewed: document.querySelector(".b-brewed").value,
+        aBrewed: document.querySelector(".a-brewed").value,
     };
     form.bBrewed = `${Array.from(form.bBrewed.matchAll(/(\d*)-(\d*)-/gm))[0][2]}-${Array.from(form.bBrewed.matchAll(/(\d*)-(\d*)-/gm))[0][1]}`;
     form.aBrewed = `${Array.from(form.aBrewed.matchAll(/(\d*)-(\d*)-/gm))[0][2]}-${Array.from(form.aBrewed.matchAll(/(\d*)-(\d*)-/gm))[0][1]}`;
@@ -98,9 +99,30 @@ document.querySelector("#search-form").addEventListener("submit", (e) => {
         search = search.concat(`&brewed_before=${form.bBrewed}`);
     }
     console.log(form);
-    fetch(search)
+    fetch(search.concat(`&page=${document.querySelector(".results .page").value}&per_page=10`))
         .then((r) => r.json())
-        .then((j) => console.log(j));
+        .then((j) => {
+            mergeCache(j)
+            document.querySelector(".split .results .found").replaceChildren();
+            for (let d of j) {
+                document.querySelector(".split .results .found").insertAdjacentHTML("afterbegin", `<span data-id=${d.id} class="click">${d.name}</span>`);
+            }
+        });
+}
+document.querySelector("#search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    search();
+});
+
+document.querySelector(".results .found").addEventListener("click", (e) => {
+    displayInfo(e.target.dataset.id)
+});
+
+document.querySelector(".results input").addEventListener("change", (e) => {
+    if (document.querySelectorAll(".split .results .found span").length < 10) {
+        e.target.value = e.target.value - 1;
+    }
+    search();
 });
 
 document.querySelector(".random .card .click").addEventListener("click", (e) => {

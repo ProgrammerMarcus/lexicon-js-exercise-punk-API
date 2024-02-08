@@ -93,10 +93,20 @@ main {
 }
 
 .results {
-    height: min-content;
-    display: grid;
-    gap: 0.3rem;
-    grid-template: min-content / min-content;
+    display: flex;
+    flex-direction: column;
+    height: 30rem;
+    .found {
+        height: min-content;
+        display: grid;
+        gap: 0.3rem;
+        margin-bottom: auto;
+    }
+    .page {
+        width: 2rem;
+        text-align: center;
+        margin-top: auto;
+    }
 }
 
 .hidden {
